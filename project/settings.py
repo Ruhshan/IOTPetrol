@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'zapper',
     'django_extensions',
+    'report'
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,7 @@ TEMPLATES = [
 
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

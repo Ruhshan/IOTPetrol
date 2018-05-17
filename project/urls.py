@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.conf.urls import url, include
 from django.urls import path
 
+from report.views import ReportView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r"^zap/", include('zapper.urls')),
+    url(r"^report/", ReportView.as_view()),
 ]
