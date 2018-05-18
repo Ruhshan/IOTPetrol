@@ -15,6 +15,7 @@ from .scan_helpers import *
 
 import json
 import os
+import random
 class ScanView(View):
 
     def get(self, request):
@@ -22,11 +23,20 @@ class ScanView(View):
 
     def post(self, request):
         payload1 = request.POST['payload1']
-        result = process_payload(payload1)
-        print(result)
-        return HttpResponse(result)
+        result1 = process_payload(payload1)
+        result2 = process_payload(payload1)
+        print(result1)
+        print(result2)
+        return HttpResponse(result2)
         
 
 class DigitPageView(View):
     def get(self, request):
-        return render(request, 'zapper/digit_page.html')
+        digit = str(int(random.random() * 99999999))
+        digit = digit.replace('1', ' 1')
+
+        return render(request, 'zapper/digit_page.html', {'digit':digit})
+
+class SwitchPageView(View):
+    def get(self, request):
+        return render(request, 'zapper/mqttswitch.html')

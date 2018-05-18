@@ -60,7 +60,7 @@ TEMPLATES = [
 
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,7 +131,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+#TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_METHODS = (

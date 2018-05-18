@@ -9,7 +9,7 @@
 
        .digit {
          font-family: Open24;
-         font-size: 60px;
+         font-size: 110px;
          position: fixed;
          left:30%;
          top:30%;
@@ -18,18 +18,33 @@
 
        .border
         {
-          border-style:solid;
+          /*border-style:solid;*/
           border-color:black;
-          padding: 10px;
-          width: 20%;
+          padding-right: 10px;
+          padding-left: 30px;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          width: 43%;
           background-color: aquamarine;
         };
     </style>
   </head>
   <body>
     
-    <div class="digit border">
+    <!-- <div class="digit border">
       &nbsp1&nbsp1&nbsp1456&nbsp1.789
+    </div> -->
+    <div class="digit border" id="digitdiv">
+      {{ digit }}
     </div>
+    
   </body>
+  <script type="text/javascript">
+    function updatedigits() {
+      newdigit = parseInt(9999999999*Math.random()).toString();
+      document.getElementById("digitdiv").innerHTML = newdigit.replace(/1/g, ' 1');
+    };
+    //window.setInterval(updatedigits, 10000);
+
+  </script>
 </html>
