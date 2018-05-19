@@ -13,3 +13,4 @@ class ReportView(View):
         reports = Sale.objects.all()
         return render(request, self.template_name, {'reports': reports})
 
+
