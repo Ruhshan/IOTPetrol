@@ -12,7 +12,7 @@ from datetime import timedelta, datetime
 from .tests import *
 
 from .scan_helpers import *
-
+from report.models import Sale
 import json
 import os
 import random
@@ -27,12 +27,19 @@ class ScanView(View):
         result2 = process_payload(payload1)
         print(result1)
         print(result2)
+        
+        try:
+            result = int(result2)
+            Sale.objects.create(quantity=result, price = result*40)
+        except:
+            print("unable to create sale object")
+            result2 ="failed"
         return HttpResponse(result2)
         
 
 class DigitPageView(View):
     def get(self, request):
-        digit = str(int(random.random() * 99999999))
+        digit = str(int(random.random() * 9999))
         digit = digit.replace('1', ' 1')
 
         return render(request, 'zapper/digit_page.html', {'digit':digit})

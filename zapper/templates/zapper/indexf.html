@@ -271,18 +271,19 @@ function capture(test_code) {
     }).done(function (res) {
         //publish(res,'petroiot/test',2)
         console.log(res);
-        if(res.slice(-1)=='!'){
-            //capture(4);
-            document.getElementById("zap_return").innerHTML=res;
-        }
-        else if(res.length!=17){
-            //capture(4);
-            document.getElementById("zap_return").innerHTML=res;
-        }
-        else{
-            document.getElementById("zap_return").innerHTML=res;
-            console.log(res);
-        }
+        document.getElementById("zap_return").innerHTML=res;
+        // if(res.slice(-1)=='!'){
+        //     //capture(4);
+        //     document.getElementById("zap_return").innerHTML=res;
+        // }
+        // else if(res.length!=17){
+        //     //capture(4);
+        //     document.getElementById("zap_return").innerHTML=res;
+        // }
+        // else{
+            
+        //     console.log(res);
+        // }
         
 
     });

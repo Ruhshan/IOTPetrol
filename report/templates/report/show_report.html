@@ -1,44 +1,75 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <script src="https://unpkg.com/vue@latest"></script>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/css/uikit.min.css" />
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+    <!--axios-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
-    <title>Report</title>
+    <title>Sales</title>
 </head>
+
 <body>
-<h1>Reports</h1>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Quantity</th>
-        <th scope="col">Total Price</th>
-        <th scope="col">Time</th>
-    </tr>
-    </thead>
-    <tbody>
-    
+    <h1>Reports</h1>
+    <div id='app'>
+        <table class="uk-table uk-table-divider uk-table-small">
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            {% verbatim %}
+            <tbody>
+                <tr v-for="sale in sales">
+                    <td>{{sale.quantity}}</td>
+                    <td>{{sale.price}}</td>
+                    <td>{{sale.sold_at}}</td>
+                </tr>
+            </tbody>
+            {% endverbatim %}
+        </table>
+    </div>
 
-
-    </tbody>
-</table>
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-        crossorigin="anonymous"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                sales: [],
+            },
+            created: function () {
+                this.fetchSales();
+                setInterval(this.fetchSales, 2000);
+            },
+            methods: {
+                fetchSales: function () {
+                    
+                    datasource = '/report/api/list'
+                    axios.get(datasource)
+                        .then(function (response) {
+                            app.$data.sales = response.data;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                }
+            },
+            watch: {
+                sales: function (val) {
+                    console.log(val);
+                },
+            },
+        });
+    </script>
 </body>
+
 </html>

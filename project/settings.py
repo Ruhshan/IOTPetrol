@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'rest_framework',
     'zapper',
     'django_extensions',
-    'report'
+    'report',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,18 @@ CORS_ALLOW_METHODS = (
     'POST',
     'PUT',
 )
+
+import logging.config
+LOGGING_CONFIG = None
+
+logging.config.dictConfig({
+    'version': 1,
+    'loggers': {
+        'report':{
+            
+            'level': 'ERROR'  # or INFO if you want to see the log
+        }
+    
+}
+})
+
