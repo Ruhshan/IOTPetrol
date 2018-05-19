@@ -21,6 +21,6 @@ from report.views import ReportView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r"^zap/", include('zapper.urls')),
+    url(r"^petro/", include('zapper.urls')),
     url(r"^report/", ReportView.as_view()),
 ]
